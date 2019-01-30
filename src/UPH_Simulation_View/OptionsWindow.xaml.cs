@@ -1,0 +1,36 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Shapes;
+using UPH_Simulation_ViewModel;
+
+namespace UPH_Simulation_View
+{
+    /// <summary>
+    /// Interaction logic for OptionsWindow.xaml
+    /// </summary>
+    public partial class OptionsWindow : Window
+    {
+        public ICommand OkCommand
+        {
+            get;
+            internal set;
+        }
+
+        public OptionsWindow()
+        {
+            InitializeComponent();
+            btnOk.DataContext = this;
+            OkCommand = new RelayCommand((parameter) => Close());
+        }
+    }
+}

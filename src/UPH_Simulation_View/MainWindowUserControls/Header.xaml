@@ -1,0 +1,114 @@
+﻿<UserControl x:Class="UPH_Simulation_View.MainWindowUserControls.Header"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d"
+             HorizontalAlignment="Stretch">
+
+    <UserControl.Resources>
+        <Style TargetType="TextBlock">
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="Foreground" Value="White" />
+        </Style>
+    </UserControl.Resources>
+
+    <StackPanel>
+        <Menu>
+            <MenuItem Header="_File">
+                <MenuItem Header="_New" Command="{Binding Commands.New}"/>
+                <MenuItem Header="_Open..." Click="OpenMenuItem_Click"/>
+                <MenuItem Header="_Save" Command="{Binding Commands.Save}"/>
+                <MenuItem Header="_Save as..." Click="SaveAsMenuItem_Click"/>
+                <MenuItem Header="_Exit" Click="ExitMenuItem_Click"/>
+            </MenuItem>
+            <MenuItem Header="_Options" Click="OptionsMenuItem_Click"/>
+
+
+        </Menu>
+        <DockPanel
+            Height="70"
+            Background="#1296DE">
+            <Label
+                Margin="10,0,60,0"
+                DockPanel.Dock="Left"
+                Content="UPH Simulation"
+                HorizontalAlignment="Left"  VerticalAlignment="Center"
+                FontFamily="Segoe UI Light" FontSize="25" FontWeight="Bold" Foreground="White">
+            </Label>
+            <Button Margin="30,5,5,5"  Height="30" Width="30" HorizontalAlignment="Left"
+                    Style="{StaticResource FlatButton}"
+                    Click="ProceedOneTimeStep_Click">
+                <Polygon 
+                    Points="0,0 0,10 8.6,5">
+                    <Polygon.Fill>
+                        <SolidColorBrush Color="Black" />
+                    </Polygon.Fill>
+                </Polygon>
+            </Button>
+            <Button Margin="5" Height="30" Width="30" HorizontalAlignment="Left"
+                    Style="{StaticResource FlatButton}" 
+                    Click="ProceedOneSecond_Click">
+                <Polygon 
+                    Points="0,0 0,10 8.6,5 8.6,0 17.2,5 8.6,10 8.6,5 ">
+                    <Polygon.Fill>
+                        <SolidColorBrush Color="Black" />
+                    </Polygon.Fill>
+                </Polygon>
+            </Button>
+            <Button Margin="5" Height="30" Width="30" HorizontalAlignment="Left"
+                    Style="{StaticResource FlatButton}" 
+                    Click="ProceedOneRound_Click">
+                <Polygon 
+                    Points="0,0 0,10 8.6,5 8.6,0 9.6,0 9.6,0 9.6,10 8.6,10 8.6,5">
+                    <Polygon.Fill>
+                        <SolidColorBrush Color="Black" />
+                    </Polygon.Fill>
+                </Polygon>
+            </Button>
+            <Button Content="  Reset  " Margin="5" Style="{StaticResource FlatButton}" Height="30" HorizontalAlignment="Left" Command="{Binding Commands.Reset}"></Button>
+            <Button Content="  Calculate  " Margin="5" Style="{StaticResource FlatButton}" Height="30"  Click="CalculateButton_Click"></Button>
+            <Grid Name="TimeGrid" Margin="20,0,5,0" Width="60">
+                <TextBlock Text="Time (s)" Margin="0,8,0,38"></TextBlock>
+                <TextBlock Text="{Binding Time, StringFormat=N2}" FontFamily="Segoe UI Light" FontSize="20" FontWeight="Bold" Margin="0,10,0,0" ></TextBlock>
+            </Grid>
+            <Grid Name="RoundGrid" Margin="10,0,5,0">
+                <TextBlock Text="Round" Margin="0,8,0,38"></TextBlock>
+                <TextBlock Text="{Binding Round}" FontFamily="Segoe UI Light" FontSize="20" FontWeight="Bold" Margin="0,10,0,0" ></TextBlock>
+            </Grid>
+
+            <Grid DockPanel.Dock="Right"
+                  HorizontalAlignment="Right"
+                  Width="270">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2.5*" />
+                    <ColumnDefinition Width="1*" />
+                    <ColumnDefinition Width="0.1*" />
+                    <ColumnDefinition Width="0.9*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="3*" />
+                    <RowDefinition Height="16*" />
+                    <RowDefinition Height="16" />
+                    <RowDefinition Height="16*" />
+                    <RowDefinition Height="16*" />
+                    <RowDefinition Height="3*" />
+                </Grid.RowDefinitions>
+
+                <Button Style="{StaticResource FlatButton}" Margin="0,0,15,0" Grid.Column="0" Grid.Row="2" Grid.RowSpan="2" Content="Waitingtime Ranking"
+                        Click="Ranking_Click"
+                        />
+
+                <TextBlock Grid.Column="1" Grid.Row="1" HorizontalAlignment="Right" Text="Cycletime" ></TextBlock>
+                <TextBlock Grid.Column="1" Grid.Row="2" HorizontalAlignment="Right" Text="Out to out"></TextBlock>
+                <TextBlock Grid.Column="1" Grid.Row="3" HorizontalAlignment="Right" Text="Uph"></TextBlock>
+                <TextBlock Grid.Column="1" Grid.Row="4" HorizontalAlignment="Right" Text="Oto Range"></TextBlock>
+                <TextBlock Grid.Column="3" Grid.Row="1" Text="{Binding ResultVM.CycleTime, StringFormat={}{0:N2}}" ></TextBlock>
+                <TextBlock Grid.Column="3" Grid.Row="2" Text="{Binding ResultVM.AutoOut, StringFormat={}{0:N2}}"></TextBlock>
+                <TextBlock Grid.Column="3" Grid.Row="3" Text="{Binding ResultVM.UnitsPerHour, StringFormat={}{0:N2}}"></TextBlock>
+                <TextBlock Grid.Column="3" Grid.Row="4" Text="{Binding ResultVM.AutoOutRange, StringFormat={}{0:N2}}"></TextBlock>
+            </Grid>
+        </DockPanel>
+        <Rectangle Height="5" HorizontalAlignment="Stretch" Fill="#EF5E1F" ></Rectangle>
+    </StackPanel>
+</UserControl>

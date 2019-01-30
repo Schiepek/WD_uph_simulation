@@ -1,0 +1,41 @@
+Requirements:
+
+- different dualzones are not possible next
+- Timestep is still static in unit and positiontime
+- Save the machine configuration into xml files
+- Remember that dual zones cant go further when other
+  work zones are between
+
+TODO
+Validation
+validation empty operation not possible
+Try all buttons in different situations
+usage of command map http://blogs.msdn.com/b/morgan/archive/2010/06/24/simplifying-commands-in-mvvm-and-wpf.aspx
+common resources
+idea (facade controller for business logic model package)
+When click new... Do you really wanna stop?
+
+
+Meeting 23.07
+- Time has to be more accurate
+- 2 Machines next to each other make exactly the same
+- collect auto out instead of uph
+
+New Machine type 29.07
+- 2 machines doo exactly the same but have different zones
+- The amount of units which go through can be configured
+
+Meeting 03.09
+- Collect Waiting Time
+- Make new Machine Type
+- Show Time
+- finished time is maybe not correct
+  not set on start of next unit
+
+
+Gonna Tell in Presentation (team)
+- CommandMap
+- ObservableViewModelCollection
+- TrulyObservableCollection
+- Gemeinsame Xaml Styles
+- Validation

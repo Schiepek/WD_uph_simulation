@@ -1,0 +1,6 @@
+- Show scetches
+- Show UI scetches
+- Explain algorithm
+- Explain mvvm
+- Why chose .net
+- Comparison between Windows forms, WPF, Asp.net

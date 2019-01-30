@@ -1,0 +1,102 @@
+﻿<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           elementFormDefault="qualified"
+           attributeFormDefault="unqualified"
+           targetNamespace="http://wdth.wdc.com/uph_simulation">
+  <xs:element name="assemblyline">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="name" minOccurs="1"  maxOccurs="1">
+          <xs:simpleType>
+            <xs:restriction base="xs:string">
+              <xs:maxLength value="30"/>
+              <xs:pattern value="^[a-zA-Z0-9_ .-]*$"></xs:pattern>
+            </xs:restriction>
+          </xs:simpleType>
+        </xs:element>
+        <xs:element name="numberofunits" minOccurs="1" maxOccurs="1">
+          <xs:simpleType>
+            <xs:restriction base="xs:integer">
+              <xs:minInclusive value="1"/>
+              <xs:maxInclusive value="999"/>
+            </xs:restriction>
+          </xs:simpleType>
+        </xs:element>
+        <xs:element name="assemblylineitem" minOccurs="0" maxOccurs="1000">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="name" minOccurs="1" maxOccurs="1">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="30"/>
+                    <xs:pattern value="^[a-zA-Z0-9_ .-]*$"></xs:pattern>
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="capacity" minOccurs="0" maxOccurs="1">
+                <xs:simpleType>
+                  <xs:restriction base="xs:integer">
+                    <xs:minInclusive value="1"/>
+                    <xs:maxInclusive value="99"/>
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="position" minOccurs="0" maxOccurs="1000">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="name" minOccurs="1" maxOccurs="1">
+                      <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                          <xs:maxLength value="30"/>
+                          <xs:pattern value="^[a-zA-Z0-9_ .-]*$"></xs:pattern>
+                        </xs:restriction>
+                      </xs:simpleType>
+                    </xs:element>
+                    <xs:element name="type" minOccurs="1" maxOccurs="1">
+                      <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                          <xs:enumeration value="buffer"/>
+                          <xs:enumeration value="work"/>
+                          <xs:enumeration value="dual"/>
+                          <xs:enumeration value="transfer"/>
+                          <xs:maxLength value="10"/>
+                          <xs:pattern value="^[a-zA-Z0-9_ .-]*$"></xs:pattern>
+                        </xs:restriction>
+                      </xs:simpleType>
+                    </xs:element>
+                    <xs:element name="time" minOccurs="1" maxOccurs="1">
+                      <xs:simpleType>
+                        <xs:restriction base="xs:decimal">
+                          <xs:fractionDigits value="2" />
+                          <xs:minInclusive value="0.01"/>
+                          <xs:maxInclusive value="999.0"/>
+                        </xs:restriction>
+                      </xs:simpleType>
+                    </xs:element>
+                    <xs:element name="lazytime" minOccurs="0">
+                      <xs:simpleType>
+                        <xs:restriction base="xs:decimal">
+                          <xs:fractionDigits value="2" />
+                          <xs:minInclusive value="0.01"/>
+                          <xs:maxInclusive value="999.0"/>
+                        </xs:restriction>
+                      </xs:simpleType>
+                    </xs:element>
+                    <xs:element name="operation" minOccurs="0">
+                      <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                          <xs:minLength value="1"/>
+                          <xs:maxLength value="30"/>
+                          <xs:pattern value="^[a-zA-Z0-9_ .-]*$"></xs:pattern>
+                        </xs:restriction>
+                      </xs:simpleType>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

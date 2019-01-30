@@ -1,0 +1,54 @@
+﻿<UserControl x:Class="UPH_Simulation_View.CustomForms.PositionForm"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:UPH_Simulation_View.CustomForms"
+             xmlns:util="clr-namespace:UPH_Simulation_View.Util"
+             xmlns:view="clr-namespace:UPH_Simulation_View"
+             mc:Ignorable="d" >
+    <UserControl.Resources>
+        <util:InvertableBooleanToVisibilityConverter x:Key="BoolToVis" />
+        <util:StateToColorConverter x:Key="StateToColor" />
+    </UserControl.Resources>
+
+    <Grid Width ="20" Height="60" Margin="1" ToolTip="{Binding PositionInfo}" ToolTipService.InitialShowDelay="0">
+        <Label FontSize="9"  Content="{Binding Rank}"
+               Visibility="{Binding IsCalculated, Converter={StaticResource BoolToVis}, ConverterParameter=Normal}"/>
+        <Rectangle VerticalAlignment="Center" Height="20" Width="20" Stroke="Black"
+                   Visibility="{Binding IsTransferZone, Converter={StaticResource BoolToVis}, ConverterParameter=Inverted}">
+            <Rectangle.Fill>
+                <MultiBinding Converter="{StaticResource StateToColor}">
+                    <Binding />
+                    <Binding RelativeSource="{RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}" Path="DataContext"></Binding>
+                    <Binding Path="State"/>
+                </MultiBinding>
+            </Rectangle.Fill>
+        </Rectangle>
+        <Rectangle VerticalAlignment="Center" Height="14" Width="14" Stroke="Black" Margin="3"
+                   Visibility="{Binding IsDualZone, Converter={StaticResource BoolToVis}, ConverterParameter=Normal}">
+        </Rectangle>
+        <Label VerticalAlignment="Center" HorizontalAlignment="Center"  Content="T"  FontSize="9"
+               Visibility="{Binding IsTransferZone, Converter={StaticResource BoolToVis}, ConverterParameter=Normal}"/>
+        <Image VerticalAlignment="Center" HorizontalAlignment="Center" Opacity="0.7"
+               Height="14" Width="14"
+            Source="pack://application:,,,/UPH_Simulation_View;component/Resources/cog.png"
+               Visibility="{Binding IsWorkZone, Converter={StaticResource BoolToVis}, ConverterParameter=Normal}"/>
+        <Grid VerticalAlignment="Bottom" Height="20" Width="20"
+              Visibility="{Binding IsActive, Converter={StaticResource BoolToVis}, ConverterParameter=Normal}"
+              Background="LightGreen">
+            <Border BorderBrush="Green" BorderThickness="1"></Border>
+            <Label HorizontalAlignment="Center" VerticalAlignment="Bottom" FontSize="9"
+               Content="{Binding CurrentUnit.Number}">
+            </Label>
+            <Label HorizontalAlignment="Left" VerticalAlignment="Bottom" FontSize="9" Content="A"
+                   Padding="0"
+                   Visibility="{Binding CurrentUnit.IsInAutostacker, Converter={StaticResource BoolToVis}, ConverterParameter=Normal}" Height="10" Width="6" Margin="1,0,0,1" >
+            </Label>
+            <Polygon Points="20,20 14,20, 20,14" Stroke="Black" Fill="Black"
+                     Visibility="{Binding CurrentUnit.HasComponent, Converter={StaticResource BoolToVis}, ConverterParameter=Normal}">
+            </Polygon>
+        </Grid>
+
+    </Grid>
+</UserControl>
